@@ -98,7 +98,6 @@ export default function Home() {
         setTurnColor(3 - turnColor);
         return;
       }
-    
   };
   return (
     <div className={styles.container}>
