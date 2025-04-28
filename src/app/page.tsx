@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   const south = (x: number, y: number, newBoard = structuredClone(board)) => {
-    if (board[y + 1] !== undefined && board[y + 1][x] === 3 - turnColor) {
+    if (board[y + 1] !== undefined && board[y + 1][x] === 3 - turnColor && board[y][x] === 0) {
       if (board[y + 2] === undefined) {
         return;
       } else if (board[y + 2][x] === turnColor) {
@@ -112,7 +112,7 @@ export default function Home() {
     }
   };
   const north = (x: number, y: number, newBoard = structuredClone(board)) => {
-    if (board[y - 1] !== undefined && board[y - 1][x] === 3 - turnColor) {
+    if (board[y - 1] !== undefined && board[y - 1][x] === 3 - turnColor && board[y][x] === 0) {
       if (board[y - 2] === undefined) {
         return;
       } else if (board[y - 2][x] === turnColor) {
@@ -192,7 +192,7 @@ export default function Home() {
     }
   };
   const west = (x: number, y: number, newBoard = structuredClone(board)) => {
-    if (board[x - 1] !== undefined && board[y][x - 1] === 3 - turnColor) {
+    if (board[x - 1] !== undefined && board[y][x - 1] === 3 - turnColor && board[y][x] === 0) {
       if (board[x - 2] === undefined) {
         return;
       } else if (board[y][x - 2] === turnColor) {
@@ -272,7 +272,7 @@ export default function Home() {
     }
   };
   const east = (x: number, y: number, newBoard = structuredClone(board)) => {
-    if (board[x + 1] !== undefined && board[y][x + 1] === 3 - turnColor) {
+    if (board[x + 1] !== undefined && board[y][x + 1] === 3 - turnColor && board[y][x] === 0) {
       if (board[x + 2] === undefined) {
         return;
       } else if (board[y][x + 2] === turnColor) {
@@ -352,7 +352,12 @@ export default function Home() {
     }
   };
   const norea = (x: number, y: number, newBoard = structuredClone(board)) => {
-    if (board[y + 1] && board[x - 1] !== undefined && board[y + 1][x - 1] === 3 - turnColor) {
+    if (
+      board[y + 1] &&
+      board[x - 1] !== undefined &&
+      board[y + 1][x - 1] === 3 - turnColor &&
+      board[y][x] === 0
+    ) {
       if (board[y + 2] && board[x - 2] === undefined) {
         return;
       } else if (board[y + 2][x - 2] === turnColor) {
@@ -432,7 +437,12 @@ export default function Home() {
     }
   };
   const souea = (x: number, y: number, newBoard = structuredClone(board)) => {
-    if (board[y - 1] && board[x - 1] !== undefined && board[y - 1][x - 1] === 3 - turnColor) {
+    if (
+      board[y - 1] &&
+      board[x - 1] !== undefined &&
+      board[y - 1][x - 1] === 3 - turnColor &&
+      board[y][x] === 0
+    ) {
       if (board[y - 2] && board[x - 2] === undefined) {
         return;
       } else if (board[y - 2][x - 2] === turnColor) {
@@ -512,7 +522,12 @@ export default function Home() {
     }
   };
   const norwe = (x: number, y: number, newBoard = structuredClone(board)) => {
-    if (board[y + 1] && board[x + 1] !== undefined && board[y + 1][x + 1] === 3 - turnColor) {
+    if (
+      board[y + 1] &&
+      board[x + 1] !== undefined &&
+      board[y + 1][x + 1] === 3 - turnColor &&
+      board[y][x] === 0
+    ) {
       if (board[y + 2] && board[x + 2] === undefined) {
         return;
       } else if (board[y + 2][x + 2] === turnColor) {
@@ -592,7 +607,12 @@ export default function Home() {
     }
   };
   const sorwe = (x: number, y: number, newBoard = structuredClone(board)) => {
-    if (board[y - 1] && board[x + 1] !== undefined && board[y - 1][x + 1] === 3 - turnColor) {
+    if (
+      board[y - 1] &&
+      board[x + 1] !== undefined &&
+      board[y - 1][x + 1] === 3 - turnColor &&
+      board[y][x] === 0
+    ) {
       if (board[y - 2] && board[x + 2] === undefined) {
         return;
       } else if (board[y - 2][x + 2] === turnColor) {
