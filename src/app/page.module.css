@@ -22,6 +22,7 @@
   width: 80px;
   height: 80px;
   border: 1px solid #000;
+
 }
 
 .stone {
@@ -29,4 +30,12 @@
   height: 56px;
   background-color: white;
   border-radius: 50%;
+}
+
+.valid{
+  width: 30%;
+  height: 30%;
+  background-color:crimson;
+  border-radius: 50%;
+
 }
