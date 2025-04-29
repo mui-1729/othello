@@ -22,7 +22,6 @@
   width: 80px;
   height: 80px;
   border: 1px solid #000;
-
 }
 
 .stone {
@@ -32,10 +31,21 @@
   border-radius: 50%;
 }
 
-.valid{
+.valid {
   width: 30%;
   height: 30%;
-  background-color:crimson;
+  background-color: crimson;
   border-radius: 50%;
+}
 
+.now {
+  margin-right: 76%;
+  margin-bottom: -3.2%;
+  color: black;
+  text-align: left;
+}
+
+.piece {
+  margin-right: 40%;
+  color: #000;
 }

@@ -27,6 +27,21 @@ export default function Home() {
     [0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 
+  const count = () => {
+    let white = 0;
+    let black = 0;
+
+    for (let y = 0; y < 8; y++) {
+      for (let x = 0; x < 8; x++) {
+        if (board[y][x] === 1) black++;
+        if (board[y][x] === 2) white++;
+      }
+    }
+    return { black, white };
+  };
+
+  const { black, white } = count();
+
   const checker = useCallback(
     (board: number[][]): { x: number; y: number }[] => {
       const moves: { x: number; y: number }[] = [];
@@ -97,6 +112,10 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.now}>現在の手番 : {turnColor === 1 ? '黒' : '白'}</div>
+      <div className={styles.piece}>
+        黒:{black} 白:{white}
+      </div>
       <div className={styles.board}>
         {board.map((row, y) =>
           row.map((color, x) => {
