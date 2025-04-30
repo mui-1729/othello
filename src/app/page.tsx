@@ -15,13 +15,16 @@ const directions = [
 ] as const;
 export default function Home() {
   const [turnColor, setTurnColor] = useState(1);
+  const [pc, setpc] = useState(0);
   const [psm, setpsm] = useState<{ x: number; y: number }[]>([]);
+  const [GO, setGO] = useState(false);
+  const [ms, setms] = useState('');
   const [board, setBoard] = useState([
-    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 2, 1],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 1, 2, 0, 0, 0],
-    [0, 0, 0, 2, 1, 0, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -77,8 +80,31 @@ export default function Home() {
   );
 
   useEffect(() => {
-    setpsm(checker(board));
-  }, [board, checker]);
+    const moves = checker(board);
+    setpsm(moves);
+
+    if (moves.length === 0 && GO === false) {
+      if (pc === 1) {
+        setms('両方置けないからゲーム終了!!');
+        setGO(true);
+        return;
+      } else {
+        setpc(1);
+        setms('置く場所がないからスキップするよ!');
+        setTurnColor(3 - turnColor);
+        return;
+      }
+    } else {
+      setpc(0);
+    }
+
+    if (ms) {
+      setTimeout(() => {
+        alert(ms);
+        setms('');
+      }, 0);
+    }
+  }, [board, turnColor, pc, ms, GO, checker]);
 
   const clickHandler = (x: number, y: number) => {
     if (!psm.some((move) => move.x === x && move.y === y)) return;
