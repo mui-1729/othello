@@ -12,10 +12,11 @@ const directions = [
   [-1, -1],
   [1, -1],
   [-1, 1],
-] as const;
+];
+
 export default function Home() {
   const [turnColor, setTurnColor] = useState(1);
-  const [pc, setpc] = useState(0);
+  const [pass, setpass] = useState(0);
   const [psm, setpsm] = useState<{ x: number; y: number }[]>([]);
   const [GO, setGO] = useState(false);
   const [ms, setms] = useState('');
@@ -53,7 +54,7 @@ export default function Home() {
         for (let x = 0; x < 8; x++) {
           if (board[y][x] !== 0) continue;
 
-          const psp = directions.some(([dx, dy]) => {
+          const psput = directions.some(([dx, dy]) => {
             let cx = x + dx,
               cy = y + dy;
             let pps = false;
@@ -71,7 +72,7 @@ export default function Home() {
             }
             return false;
           });
-          if (psp) moves.push({ x, y });
+          if (psput) moves.push({ x, y });
         }
       }
       return moves;
@@ -84,18 +85,18 @@ export default function Home() {
     setpsm(moves);
 
     if (moves.length === 0 && GO === false) {
-      if (pc === 1) {
-        setms('両方置けないからゲーム終了!!');
+      if (pass === 1) {
+        setms('ゲーム終了!!');
         setGO(true);
         return;
       } else {
-        setpc(1);
+        setpass(1);
         setms('置く場所がないからスキップするよ!');
         setTurnColor(3 - turnColor);
         return;
       }
     } else {
-      setpc(0);
+      setpass(0);
     }
 
     if (ms) {
@@ -104,7 +105,7 @@ export default function Home() {
         setms('');
       }, 0);
     }
-  }, [board, turnColor, pc, ms, GO, checker]);
+  }, [board, turnColor, pass, ms, GO, checker]);
 
   const clickHandler = (x: number, y: number) => {
     if (!psm.some((move) => move.x === x && move.y === y)) return;
@@ -113,17 +114,17 @@ export default function Home() {
     let ps = false;
 
     for (const [dx, dy] of directions) {
-      const tt: { x: number; y: number }[] = [];
+      const psd: { x: number; y: number }[] = [];
       let cx = x + dx,
         cy = y + dy;
 
       while (cx >= 0 && cx < 8 && cy >= 0 && cy < 8 && newBoard[cy][cx] === 3 - turnColor) {
-        tt.push({ x: cx, y: cy });
+        psd.push({ x: cx, y: cy });
         cx += dx;
         cy += dy;
       }
-      if (tt.length && cx >= 0 && cx < 8 && cy >= 0 && cy < 8 && newBoard[cy][cx] === turnColor) {
-        tt.forEach(({ x, y }) => (newBoard[y][x] = turnColor));
+      if (psd.length && cx >= 0 && cx < 8 && cy >= 0 && cy < 8 && newBoard[cy][cx] === turnColor) {
+        psd.forEach(({ x, y }) => (newBoard[y][x] = turnColor));
         ps = true;
       }
     }
