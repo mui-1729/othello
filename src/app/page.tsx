@@ -86,7 +86,12 @@ export default function Home() {
 
     if (moves.length === 0 && GO === false) {
       if (pass === 1) {
-        setms('ゲーム終了!!');
+        const win = (() => {
+          if (black > white) return '黒の勝ち';
+          if (black < white) return '白の勝ち';
+          else return '同点';
+        })();
+        setms(`ゲーム終了!!\n黒:${black} 白:${white}\n${win}`);
         setGO(true);
         return;
       } else {
@@ -105,7 +110,7 @@ export default function Home() {
         setms('');
       }, 0);
     }
-  }, [board, turnColor, pass, ms, GO, checker]);
+  }, [board, turnColor, pass, ms, GO, white, black, checker]);
 
   const clickHandler = (x: number, y: number) => {
     if (!psm.some((move) => move.x === x && move.y === y)) return;
