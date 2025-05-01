@@ -11,7 +11,7 @@
 .board {
   width: 640px;
   height: 640px;
-  background-color: darkgreen;
+  background-color: aquamarine;
 }
 
 .cell {
@@ -22,20 +22,20 @@
   width: 80px;
   height: 80px;
   border: 1px solid #000;
+  border-radius: 10%;
 }
 
 .stone {
   width: 56px;
   height: 56px;
-  background-color: white;
   border-radius: 50%;
 }
 
 .valid {
-  width: 30%;
-  height: 30%;
-  background-color: crimson;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(212 255 241);
+  border-radius: 10%;
 }
 
 .now {
@@ -61,6 +61,7 @@
   .cell {
     width: calc(90vw / 8);
     height: calc(90vw / 8);
+    border-radius: 10%;
   }
 
   .stone {
