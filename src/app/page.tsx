@@ -32,15 +32,8 @@ export default function Home() {
   ]);
 
   const count = () => {
-    let white = 0;
-    let black = 0;
-
-    for (let y = 0; y < 8; y++) {
-      for (let x = 0; x < 8; x++) {
-        if (board[y][x] === 1) black++;
-        if (board[y][x] === 2) white++;
-      }
-    }
+    const black = board.flat().filter((cell) => cell === 1).length;
+    const white = board.flat().filter((cell) => cell === 2).length;
     return { black, white };
   };
 
@@ -114,7 +107,16 @@ export default function Home() {
 
   const clickHandler = (x: number, y: number) => {
     if (!psm.some((move) => move.x === x && move.y === y)) return;
+    colorChange(x, y);
+  };
 
+  const colorChange = (
+    x: number,
+    y: number,
+  ): {
+    ps: boolean;
+    newBoard: number[][];
+  } => {
     const newBoard = structuredClone(board);
     let ps = false;
 
@@ -138,8 +140,7 @@ export default function Home() {
       setBoard(newBoard);
       setTurnColor(3 - turnColor);
     }
-
-    console.log(x, y);
+    return { newBoard, ps };
   };
 
   return (
