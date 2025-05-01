@@ -145,10 +145,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.now}>現在の手番 : {turnColor === 1 ? '黒' : '白'}</div>
-      <div className={styles.piece}>
-        黒:{black} 白:{white}
-      </div>
+      <State black={black} white={white} turnColor={turnColor} />
       <div className={styles.board}>
         {board.map((row, y) =>
           row.map((color, x) => {
@@ -170,3 +167,19 @@ export default function Home() {
     </div>
   );
 }
+type StateProp = {
+  turnColor: number;
+  black: number;
+  white: number;
+};
+
+const State: React.FC<StateProp> = ({ turnColor, black, white }) => {
+  return (
+    <div>
+      <div className={styles.now}>現在の手番 : {turnColor === 1 ? '黒' : '白'}</div>
+      <div className={styles.piece}>
+        黒:{black} 白:{white}
+      </div>
+    </div>
+  );
+};
