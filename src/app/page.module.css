@@ -38,6 +38,10 @@
   border-radius: 10%;
 }
 
+.row {
+  display: flex;
+}
+
 .now {
   margin-right: 500px;
   margin-bottom: 0.5rem;
